@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import "antd/dist/antd.css";
+import MovieList from "./components /MovieList";
+import Filter from "./components /Filter";
+import Title from "./components /Title";
+import AddMOvie from "./components /AddMovie";
+import { MovieData } from "./Data";
 function App() {
+  const [movie, setMovie] = useState(MovieData);
+  const addMovie = (newMovie) => setMovie(...movie, newMovie);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Title />
+      <Filter />
+      <MovieList movielist={movie} />
+      <AddMOvie handleAdd={addMovie} />
     </div>
   );
 }
-
 export default App;
