@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "antd";
-const onSearch = (value) => console.log(value);
+import StarRatingComponent from "react-star-rating-component";
 const { Search } = Input;
-function Filter(title, rate) {
+function Filter({ title, rate, setRate }) {
+  const onStarClick = (nextValue) => {
+    setRate(nextValue);
+  };
+
   return (
-    <div>
+    <div className="d-flex flex-row bd-highlight mb-3">
       <Search
-        style={{ margin: "1rem", width: "77rem" }}
+        style={{ margin: "1rem", maxWidth: "60rem" }}
         placeholder="search a movie"
         allowClear
-        onSearch={onSearch}
+        onChange={(e) => title(e.target.value)}
         size="large"
       />
+      <div className="mt-3">
+        {" "}
+        <div>
+          <StarRatingComponent
+            name="rate"
+            starCount={5}
+            value={rate}
+            emptyStarColor={"white"}
+            onStarClick={onStarClick}
+          />
+        </div>
+      </div>
     </div>
   );
 }

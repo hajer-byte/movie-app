@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import StarRating from "./StarRating";
 import "../index.css";
@@ -14,7 +14,7 @@ const customStyles = {
   },
 };
 Modal.setAppElement("#root");
-function AddMovie({ handleAdd }) {
+function AddMovie({ addMovie }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState({
     title: "",
@@ -36,12 +36,6 @@ function AddMovie({ handleAdd }) {
     console.log(star);
     setForm({ ...form, rate: star });
   };
-
-  const addMovie = (e) => {
-    e.preventDefault();
-    let newMovie = { ...form, id: Math.random() };
-    handleAdd(newMovie);
-  };
   return (
     <div>
       <Button
@@ -57,7 +51,7 @@ function AddMovie({ handleAdd }) {
         Add a movie
       </Button>
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
-        <form className="form-style-8" onSubmit={addMovie}>
+        <form className="form-style-8">
           <h2>Add Movies </h2>
           <div>
             <label>Movie Title</label>
@@ -92,6 +86,10 @@ function AddMovie({ handleAdd }) {
             className="submit"
             style={{ marginLeft: "20rem" }}
             type="submit"
+            onClick={() => {
+              addMovie(form);
+              closeModal();
+            }}
           >
             Add Movie
           </Button>
