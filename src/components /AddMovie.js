@@ -19,7 +19,7 @@ function AddMovie({ addMovie }) {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    posteUrl: "",
+    posterUrl: "",
     rate: 0,
   });
   const handleOnChange = (e) => {
@@ -75,8 +75,8 @@ function AddMovie({ addMovie }) {
             <label>Image Url </label>
             <input
               type="url"
-              value={form.posteUrl}
-              name="posteUrl"
+              value={form.posterUrl}
+              name="posterUrl"
               onChange={handleOnChange}
             />
           </div>
